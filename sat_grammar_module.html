@@ -3,801 +3,647 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SAT Grammar: Parts of Speech — 11th Grade Module</title>
+<title>Parts of Speech – SAT Prep | 11th Grade Module</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --navy: #1a2744;
-    --gold: #c8973a;
-    --cream: #faf7f2;
-    --warm-white: #ffffff;
-    --slate: #4a5568;
-    --light-slate: #e8edf5;
-    --success: #2d6a4f;
-    --error: #9b2335;
-    --accent: #3a6bc8;
+    --navy: #1a2744; --gold: #c8973a; --cream: #faf7f2;
+    --white: #ffffff; --slate: #4a5568; --light: #e8edf5;
+    --green: #2d6a4f; --red: #9b2335; --blue: #3a6bc8;
   }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Source Sans 3',sans-serif; background:var(--cream); color:var(--navy); }
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+  /* NAV */
+  nav { background:var(--navy); padding:0 1.5rem; display:flex; align-items:center; justify-content:space-between; position:sticky; top:0; z-index:100; box-shadow:0 2px 20px rgba(0,0,0,.3); }
+  .nav-brand { font-family:'Playfair Display',serif; color:var(--gold); font-size:1rem; padding:1rem 0; flex-shrink:0; }
+  .nav-tabs { display:flex; overflow-x:auto; }
+  .nav-tab { padding:1rem 0.9rem; color:rgba(255,255,255,.4); font-size:.7rem; font-weight:600; letter-spacing:.08em; text-transform:uppercase; cursor:pointer; border-bottom:3px solid transparent; transition:all .2s; white-space:nowrap; }
+  .nav-tab:hover { color:rgba(255,255,255,.7); }
+  .nav-tab.active { color:var(--gold); border-bottom-color:var(--gold); }
+  .nav-tab.done { color:rgba(255,255,255,.55); }
+  .progress-bar { height:4px; background:var(--light); }
+  .progress-fill { height:100%; background:linear-gradient(90deg,var(--gold),#e8b453); transition:width .5s; }
 
-  body {
-    font-family: 'Source Sans 3', sans-serif;
-    background: var(--cream);
-    color: var(--navy);
-    min-height: 100vh;
-  }
+  /* PAGE SYSTEM */
+  .page { display:none; animation:fadeUp .35s ease; }
+  .page.active { display:block; }
+  @keyframes fadeUp { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
 
-  /* ─── NAV ─── */
-  nav {
-    background: var(--navy);
-    padding: 0 2rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    box-shadow: 0 2px 20px rgba(0,0,0,0.3);
-  }
-  .nav-brand {
-    font-family: 'Playfair Display', serif;
-    color: var(--gold);
-    font-size: 1.1rem;
-    padding: 1.1rem 0;
-    letter-spacing: 0.02em;
-  }
-  .nav-steps {
-    display: flex;
-    gap: 0;
-  }
-  .nav-step {
-    padding: 1.1rem 1.2rem;
-    color: rgba(255,255,255,0.45);
-    font-size: 0.78rem;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    cursor: pointer;
-    border-bottom: 3px solid transparent;
-    transition: all 0.2s;
-    white-space: nowrap;
-  }
-  .nav-step:hover { color: rgba(255,255,255,0.75); }
-  .nav-step.active { color: var(--gold); border-bottom-color: var(--gold); }
-  .nav-step.completed { color: rgba(255,255,255,0.65); }
+  /* HERO */
+  .hero { background:var(--navy); padding:4.5rem 1.5rem 3.5rem; text-align:center; position:relative; overflow:hidden; }
+  .hero::before { content:''; position:absolute; top:-50px; right:-50px; width:280px; height:280px; border-radius:50%; border:50px solid rgba(200,151,58,.07); }
+  .hero::after { content:''; position:absolute; bottom:-40px; left:-40px; width:200px; height:200px; border-radius:50%; border:35px solid rgba(58,107,200,.08); }
+  .badge { display:inline-block; background:rgba(200,151,58,.15); border:1px solid rgba(200,151,58,.4); color:var(--gold); font-size:.7rem; font-weight:600; letter-spacing:.14em; text-transform:uppercase; padding:.35rem .9rem; border-radius:2px; margin-bottom:1.4rem; }
+  .hero h1 { font-family:'Playfair Display',serif; font-size:clamp(2rem,5vw,3.5rem); color:#fff; line-height:1.1; margin-bottom:1rem; position:relative; z-index:1; }
+  .hero h1 em { color:var(--gold); font-style:normal; }
+  .hero p { color:rgba(255,255,255,.6); font-size:1rem; font-weight:300; max-width:500px; margin:0 auto 2.2rem; line-height:1.6; }
 
-  /* ─── PROGRESS BAR ─── */
-  .progress-bar {
-    height: 4px;
-    background: var(--light-slate);
-  }
-  .progress-fill {
-    height: 100%;
-    background: linear-gradient(90deg, var(--gold), #e8b453);
-    transition: width 0.5s ease;
-  }
+  /* CARDS */
+  .card-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:1.2rem; padding:2.5rem 1.5rem; max-width:1080px; margin:0 auto; }
+  .card { background:var(--white); border-radius:4px; padding:1.6rem; border:1px solid rgba(26,39,68,.1); box-shadow:0 2px 14px rgba(26,39,68,.06); transition:transform .2s,box-shadow .2s; }
+  .card:hover { transform:translateY(-3px); box-shadow:0 8px 28px rgba(26,39,68,.11); }
+  .card-icon { font-size:1.4rem; margin-bottom:.8rem; }
+  .card h3 { font-family:'Playfair Display',serif; font-size:1.05rem; margin-bottom:.4rem; }
+  .card p { color:var(--slate); font-size:.86rem; line-height:1.6; }
 
-  /* ─── SECTIONS ─── */
-  .section { display: none; animation: fadeIn 0.4s ease; }
-  .section.active { display: block; }
-  @keyframes fadeIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+  /* MODULE LIST */
+  .module-list { max-width:860px; margin:0 auto; padding:0 1.5rem 3rem; }
+  .module-list h2 { font-family:'Playfair Display',serif; font-size:1.4rem; margin-bottom:1.2rem; }
+  .mitem { display:flex; align-items:center; gap:1rem; padding:.9rem 1.1rem; background:var(--white); border:1px solid rgba(26,39,68,.1); border-radius:4px; margin-bottom:.5rem; cursor:pointer; transition:all .18s; }
+  .mitem:hover { border-color:var(--blue); box-shadow:0 2px 10px rgba(58,107,200,.1); }
+  .mnum { width:30px; height:30px; border-radius:50%; background:var(--light); color:var(--navy); display:flex; align-items:center; justify-content:center; font-weight:600; font-size:.82rem; flex-shrink:0; }
+  .mitem .mt { font-weight:600; font-size:.92rem; }
+  .mitem .md { color:var(--slate); font-size:.8rem; }
+  .mtag { margin-left:auto; font-size:.68rem; font-weight:600; letter-spacing:.07em; text-transform:uppercase; color:var(--slate); background:var(--light); padding:.22rem .55rem; border-radius:2px; white-space:nowrap; }
 
-  /* ─── HERO ─── */
-  .hero {
-    background: var(--navy);
-    padding: 5rem 2rem 4rem;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
-  .hero::before {
-    content: '';
-    position: absolute;
-    top: -60px; right: -60px;
-    width: 320px; height: 320px;
-    border-radius: 50%;
-    border: 60px solid rgba(200,151,58,0.08);
-  }
-  .hero::after {
-    content: '';
-    position: absolute;
-    bottom: -40px; left: -40px;
-    width: 220px; height: 220px;
-    border-radius: 50%;
-    border: 40px solid rgba(58,107,200,0.1);
-  }
-  .hero-tag {
-    display: inline-block;
-    background: rgba(200,151,58,0.15);
-    border: 1px solid rgba(200,151,58,0.4);
-    color: var(--gold);
-    font-size: 0.72rem;
-    font-weight: 600;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    padding: 0.4rem 1rem;
-    border-radius: 2px;
-    margin-bottom: 1.5rem;
-  }
-  .hero h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(2.2rem, 5vw, 3.8rem);
-    color: var(--warm-white);
-    line-height: 1.1;
-    margin-bottom: 1.2rem;
-    position: relative;
-    z-index: 1;
-  }
-  .hero h1 span { color: var(--gold); }
-  .hero-sub {
-    color: rgba(255,255,255,0.6);
-    font-size: 1.05rem;
-    font-weight: 300;
-    max-width: 520px;
-    margin: 0 auto 2.5rem;
-    line-height: 1.6;
-  }
+  /* CONTENT */
+  .wrap { max-width:840px; margin:0 auto; padding:2.5rem 1.5rem; }
+  .sec-head { margin-bottom:2rem; padding-bottom:1.2rem; border-bottom:2px solid var(--light); }
+  .sec-label { font-size:.7rem; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--gold); margin-bottom:.4rem; }
+  .sec-head h2 { font-family:'Playfair Display',serif; font-size:1.9rem; }
+  .sec-head p { color:var(--slate); margin-top:.5rem; font-size:.95rem; line-height:1.6; }
 
-  /* ─── CARDS ─── */
-  .card-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 1.5rem;
-    padding: 3rem 2rem;
-    max-width: 1100px;
-    margin: 0 auto;
-  }
-  .card {
-    background: var(--warm-white);
-    border-radius: 4px;
-    padding: 2rem;
-    border: 1px solid rgba(26,39,68,0.1);
-    box-shadow: 0 2px 16px rgba(26,39,68,0.06);
-    transition: transform 0.2s, box-shadow 0.2s;
-  }
-  .card:hover { transform: translateY(-3px); box-shadow: 0 8px 32px rgba(26,39,68,0.12); }
-  .card-icon {
-    width: 44px; height: 44px;
-    background: var(--light-slate);
-    border-radius: 3px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1.4rem;
-    margin-bottom: 1rem;
-  }
-  .card h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.15rem;
-    margin-bottom: 0.5rem;
-  }
-  .card p {
-    color: var(--slate);
-    font-size: 0.9rem;
-    line-height: 1.6;
-  }
+  /* LESSON BLOCKS */
+  .lb { background:var(--white); border-radius:4px; border:1px solid rgba(26,39,68,.1); padding:1.8rem; margin-bottom:1.3rem; }
+  .lb h3 { font-family:'Playfair Display',serif; font-size:1.15rem; margin-bottom:.85rem; }
+  .lb p { color:var(--slate); line-height:1.7; margin-bottom:.7rem; }
+  .lb ul { padding-left:1.1rem; color:var(--slate); line-height:2.1; }
+  .ex { background:var(--light); border-left:3px solid var(--gold); padding:.7rem 1rem; margin:.5rem 0; font-size:.92rem; color:var(--navy); line-height:1.6; border-radius:0 3px 3px 0; }
+  .ex em { color:var(--blue); font-style:normal; font-weight:600; }
+  .tip { background:rgba(200,151,58,.08); border:1px solid rgba(200,151,58,.28); border-radius:4px; padding:.85rem 1.1rem; margin-top:.9rem; font-size:.86rem; color:var(--slate); line-height:1.6; }
+  .tip strong { color:var(--navy); }
 
-  /* ─── CONTENT AREA ─── */
-  .content-wrap {
-    max-width: 860px;
-    margin: 0 auto;
-    padding: 3rem 2rem;
-  }
+  /* PURPOSE BOX */
+  .pbox { background:var(--navy); color:#fff; border-radius:4px; padding:2.2rem; margin-bottom:1.3rem; position:relative; overflow:hidden; }
+  .pbox::before { content:'"'; font-family:'Playfair Display',serif; font-size:11rem; color:rgba(200,151,58,.06); position:absolute; top:-1.5rem; left:.8rem; line-height:1; }
+  .pbox h3 { font-family:'Playfair Display',serif; color:var(--gold); font-size:1.2rem; margin-bottom:.9rem; position:relative; }
+  .pbox p { line-height:1.75; color:rgba(255,255,255,.85); position:relative; font-size:.96rem; margin-bottom:.7rem; }
+  .rqs { list-style:none; background:var(--light); border-radius:4px; padding:.8rem 1rem .5rem 1rem; margin-top:.7rem; }
+  .rqs li { color:var(--navy); border-bottom:1px solid rgba(26,39,68,.1); padding:.65rem 0 .65rem 1.4rem; font-size:.92rem; line-height:1.6; position:relative; }
+  .rqs li:last-child { border-bottom:none; }
+  .rqs li::before { content:'→'; position:absolute; left:0; color:var(--gold); }
 
-  .section-header {
-    margin-bottom: 2.5rem;
-    padding-bottom: 1.5rem;
-    border-bottom: 2px solid var(--light-slate);
-  }
-  .section-tag {
-    font-size: 0.72rem;
-    font-weight: 600;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 0.5rem;
-  }
-  .section-header h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: 2rem;
-    color: var(--navy);
-  }
-  .section-header p {
-    color: var(--slate);
-    margin-top: 0.6rem;
-    font-size: 1rem;
-    line-height: 1.6;
-  }
+  /* POS GRID */
+  .pos-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(185px,1fr)); gap:.9rem; margin-top:.9rem; }
+  .pos-tag { background:var(--light); border-left:3px solid var(--navy); padding:.75rem .95rem; border-radius:0 3px 3px 0; }
+  .pos-tag .pn { font-weight:600; font-size:.8rem; color:var(--navy); text-transform:uppercase; letter-spacing:.05em; }
+  .pos-tag .pd { font-size:.79rem; color:var(--slate); margin-top:.15rem; }
+  .pos-tag .pe { font-size:.76rem; color:var(--blue); margin-top:.15rem; font-style:italic; }
 
-  /* ─── LESSON CONTENT ─── */
-  .lesson-block {
-    background: var(--warm-white);
-    border-radius: 4px;
-    border: 1px solid rgba(26,39,68,0.1);
-    padding: 2rem;
-    margin-bottom: 1.5rem;
-  }
-  .lesson-block h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.25rem;
-    margin-bottom: 1rem;
-    color: var(--navy);
-  }
-  .lesson-block p {
-    color: var(--slate);
-    line-height: 1.7;
-    margin-bottom: 0.8rem;
-  }
+  /* LESSON TABS */
+  .ltabs { display:flex; gap:.4rem; flex-wrap:wrap; margin-bottom:1.8rem; }
+  .ltab { padding:.45rem 1rem; border-radius:3px; font-size:.78rem; font-weight:600; cursor:pointer; border:1.5px solid rgba(26,39,68,.18); color:var(--slate); transition:all .15s; }
+  .ltab:hover { border-color:var(--blue); color:var(--blue); }
+  .ltab.active { background:var(--navy); color:#fff; border-color:var(--navy); }
+  .lpane { display:none; }
+  .lpane.active { display:block; animation:fadeUp .3s ease; }
 
-  .pos-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 1rem;
-    margin-top: 1rem;
-  }
-  .pos-tag {
-    background: var(--light-slate);
-    border-left: 3px solid var(--navy);
-    padding: 0.8rem 1rem;
-    border-radius: 0 3px 3px 0;
-  }
-  .pos-tag .name {
-    font-weight: 600;
-    font-size: 0.85rem;
-    color: var(--navy);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-  }
-  .pos-tag .def {
-    font-size: 0.82rem;
-    color: var(--slate);
-    margin-top: 0.2rem;
-  }
-  .pos-tag .ex {
-    font-size: 0.78rem;
-    color: var(--accent);
-    margin-top: 0.2rem;
-    font-style: italic;
-  }
+  /* QUIZ */
+  .qcard { background:var(--white); border:1px solid rgba(26,39,68,.1); border-radius:4px; padding:1.6rem; margin-bottom:1.1rem; }
+  .qnum { font-size:.68rem; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--gold); margin-bottom:.45rem; }
+  .qtext { font-size:.97rem; color:var(--navy); margin-bottom:.9rem; line-height:1.6; font-weight:600; }
+  .qpassage { background:var(--light); border-left:3px solid var(--gold); padding:.7rem .95rem; margin-bottom:.9rem; font-style:italic; font-size:.93rem; color:var(--slate); line-height:1.6; border-radius:0 3px 3px 0; }
+  .opts { list-style:none; }
+  .opts li { margin-bottom:.4rem; }
+  .opts label { display:flex; align-items:flex-start; gap:.65rem; padding:.65rem .9rem; border:1.5px solid rgba(26,39,68,.14); border-radius:3px; cursor:pointer; transition:all .14s; font-size:.9rem; color:var(--slate); line-height:1.5; }
+  .opts label:hover { border-color:var(--blue); background:rgba(58,107,200,.04); }
+  .opts input { margin-top:3px; accent-color:var(--navy); }
+  .opts label.correct { border-color:var(--green); background:rgba(45,106,79,.08); color:var(--green); font-weight:600; }
+  .opts label.wrong { border-color:var(--red); background:rgba(155,35,53,.06); color:var(--red); }
+  .fb { margin-top:.85rem; padding:.75rem 1rem; border-radius:3px; font-size:.88rem; line-height:1.6; display:none; }
+  .fb.correct { background:rgba(45,106,79,.1); color:var(--green); border-left:3px solid var(--green); }
+  .fb.wrong { background:rgba(155,35,53,.08); color:var(--red); border-left:3px solid var(--red); }
 
-  /* ─── PURPOSE SECTION ─── */
-  .purpose-box {
-    background: var(--navy);
-    color: var(--warm-white);
-    border-radius: 4px;
-    padding: 2.5rem;
-    margin-bottom: 1.5rem;
-    position: relative;
-    overflow: hidden;
-  }
-  .purpose-box::before {
-    content: '"';
-    font-family: 'Playfair Display', serif;
-    font-size: 12rem;
-    color: rgba(200,151,58,0.08);
-    position: absolute;
-    top: -2rem;
-    left: 1rem;
-    line-height: 1;
-  }
-  .purpose-box h3 {
-    font-family: 'Playfair Display', serif;
-    color: var(--gold);
-    font-size: 1.3rem;
-    margin-bottom: 1rem;
-    position: relative;
-  }
-  .purpose-box p {
-    line-height: 1.75;
-    color: rgba(255,255,255,0.85);
-    position: relative;
-    font-size: 1rem;
-  }
-  .rq-list {
-    list-style: none;
-    margin-top: 1.2rem;
-  }
-  .rq-list li {
-    padding: 0.8rem 0 0.8rem 1.5rem;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
-    color: rgba(255,255,255,0.8);
-    font-size: 0.95rem;
-    line-height: 1.6;
-    position: relative;
-  }
-  .rq-list li::before {
-    content: '→';
-    position: absolute;
-    left: 0;
-    color: var(--gold);
-  }
+  /* SCORE BANNER */
+  .score-banner { background:var(--navy); color:#fff; padding:1.4rem 1.8rem; border-radius:4px; display:none; align-items:center; justify-content:space-between; margin-top:1.4rem; flex-wrap:wrap; gap:1rem; }
+  .score-big { font-family:'Playfair Display',serif; font-size:2.4rem; color:var(--gold); }
+  .score-lbl { font-size:.82rem; color:rgba(255,255,255,.55); margin-top:.15rem; }
+  .score-msg { color:rgba(255,255,255,.75); font-size:.88rem; max-width:320px; line-height:1.6; }
 
-  /* ─── QUIZ ─── */
-  .quiz-q {
-    background: var(--warm-white);
-    border: 1px solid rgba(26,39,68,0.1);
-    border-radius: 4px;
-    padding: 1.8rem;
-    margin-bottom: 1.2rem;
-  }
-  .quiz-q .q-num {
-    font-size: 0.72rem;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 0.5rem;
-  }
-  .quiz-q .q-text {
-    font-size: 1rem;
-    color: var(--navy);
-    margin-bottom: 1rem;
-    line-height: 1.6;
-    font-weight: 600;
-  }
-  .quiz-q .passage {
-    background: var(--light-slate);
-    border-left: 3px solid var(--gold);
-    padding: 0.8rem 1rem;
-    margin-bottom: 1rem;
-    font-style: italic;
-    font-size: 0.95rem;
-    color: var(--slate);
-    line-height: 1.6;
-    border-radius: 0 3px 3px 0;
-  }
-  .quiz-options { list-style: none; }
-  .quiz-options li {
-    margin-bottom: 0.5rem;
-  }
-  .quiz-options label {
-    display: flex;
-    align-items: flex-start;
-    gap: 0.75rem;
-    padding: 0.7rem 1rem;
-    border: 1.5px solid rgba(26,39,68,0.15);
-    border-radius: 3px;
-    cursor: pointer;
-    transition: all 0.15s;
-    font-size: 0.93rem;
-    color: var(--slate);
-    line-height: 1.5;
-  }
-  .quiz-options label:hover {
-    border-color: var(--accent);
-    background: rgba(58,107,200,0.04);
-  }
-  .quiz-options input[type="radio"] { margin-top: 3px; accent-color: var(--navy); }
-  .quiz-options label.correct {
-    border-color: var(--success);
-    background: rgba(45,106,79,0.08);
-    color: var(--success);
-    font-weight: 600;
-  }
-  .quiz-options label.incorrect {
-    border-color: var(--error);
-    background: rgba(155,35,53,0.06);
-    color: var(--error);
-  }
+  /* REFLECTION FORM */
+  .reflect-q { background:var(--white); border:1px solid rgba(26,39,68,.1); border-radius:4px; padding:1.6rem; margin-bottom:1.1rem; }
+  .reflect-q label { display:block; font-weight:600; font-size:.95rem; margin-bottom:.7rem; line-height:1.5; }
+  .reflect-q textarea { width:100%; border:1.5px solid rgba(26,39,68,.15); border-radius:3px; padding:.7rem .9rem; font-family:'Source Sans 3',sans-serif; font-size:.9rem; color:var(--navy); resize:vertical; min-height:90px; transition:border-color .15s; }
+  .reflect-q textarea:focus { outline:none; border-color:var(--blue); }
+  .saved-banner { background:rgba(45,106,79,.12); border:1px solid rgba(45,106,79,.3); color:var(--green); border-radius:4px; padding:.85rem 1.1rem; margin-top:1.2rem; font-size:.9rem; display:none; }
 
-  .feedback-box {
-    margin-top: 1rem;
-    padding: 0.8rem 1.1rem;
-    border-radius: 3px;
-    font-size: 0.9rem;
-    line-height: 1.6;
-    display: none;
-  }
-  .feedback-box.correct { background: rgba(45,106,79,0.1); color: var(--success); border-left: 3px solid var(--success); }
-  .feedback-box.incorrect { background: rgba(155,35,53,0.08); color: var(--error); border-left: 3px solid var(--error); }
+  /* BUTTONS */
+  .btn { display:inline-flex; align-items:center; gap:.45rem; padding:.75rem 1.8rem; border-radius:3px; font-size:.87rem; font-weight:600; letter-spacing:.04em; cursor:pointer; transition:all .18s; border:none; font-family:'Source Sans 3',sans-serif; }
+  .btn-primary { background:var(--navy); color:#fff; }
+  .btn-primary:hover { background:#263660; transform:translateY(-1px); }
+  .btn-gold { background:var(--gold); color:var(--navy); }
+  .btn-gold:hover { background:#d4a440; transform:translateY(-1px); }
+  .btn-outline { background:transparent; color:var(--navy); border:2px solid var(--navy); }
+  .btn-outline:hover { background:var(--navy); color:#fff; }
+  .btn-row { display:flex; gap:.9rem; margin-top:1.8rem; flex-wrap:wrap; }
 
-  /* ─── SCORE BANNER ─── */
-  .score-banner {
-    background: var(--navy);
-    color: var(--warm-white);
-    padding: 1.5rem 2rem;
-    border-radius: 4px;
-    display: none;
-    align-items: center;
-    justify-content: space-between;
-    margin-top: 1.5rem;
-  }
-  .score-banner .score-num {
-    font-family: 'Playfair Display', serif;
-    font-size: 2.5rem;
-    color: var(--gold);
-  }
-  .score-banner .score-label {
-    font-size: 0.85rem;
-    color: rgba(255,255,255,0.6);
-    margin-top: 0.2rem;
-  }
-
-  /* ─── BUTTONS ─── */
-  .btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.8rem 2rem;
-    border-radius: 3px;
-    font-size: 0.9rem;
-    font-weight: 600;
-    letter-spacing: 0.04em;
-    cursor: pointer;
-    transition: all 0.2s;
-    border: none;
-    font-family: 'Source Sans 3', sans-serif;
-  }
-  .btn-primary {
-    background: var(--navy);
-    color: var(--warm-white);
-  }
-  .btn-primary:hover { background: #263660; transform: translateY(-1px); }
-  .btn-gold {
-    background: var(--gold);
-    color: var(--navy);
-  }
-  .btn-gold:hover { background: #d4a440; transform: translateY(-1px); }
-  .btn-outline {
-    background: transparent;
-    color: var(--navy);
-    border: 2px solid var(--navy);
-  }
-  .btn-outline:hover { background: var(--navy); color: white; }
-
-  .btn-row {
-    display: flex;
-    gap: 1rem;
-    margin-top: 2rem;
-    flex-wrap: wrap;
-  }
-
-  /* ─── FOOTER ─── */
-  footer {
-    background: var(--navy);
-    color: rgba(255,255,255,0.4);
-    text-align: center;
-    padding: 1.5rem;
-    font-size: 0.8rem;
-    margin-top: 4rem;
-  }
-  footer span { color: var(--gold); }
+  footer { background:var(--navy); color:rgba(255,255,255,.4); text-align:center; padding:1.4rem; font-size:.78rem; margin-top:4rem; }
+  footer span { color:var(--gold); }
 </style>
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
-  <div class="nav-brand">SAT Grammar Module</div>
-  <div class="nav-steps">
-    <div class="nav-step active" onclick="showSection(0)">Overview</div>
-    <div class="nav-step" onclick="showSection(1)">Purpose</div>
-    <div class="nav-step" onclick="showSection(2)">Lesson</div>
-    <div class="nav-step" onclick="showSection(3)">Practice</div>
+  <div class="nav-brand">Parts of Speech – SAT Prep</div>
+  <div class="nav-tabs">
+    <div class="nav-tab active"  onclick="go(0)">Overview</div>
+    <div class="nav-tab" onclick="go(1)">Purpose</div>
+    <div class="nav-tab" onclick="go(2)">Pre-Assessment</div>
+    <div class="nav-tab" onclick="go(3)">Lessons</div>
+    <div class="nav-tab" onclick="go(4)">Practice</div>
+    <div class="nav-tab" onclick="go(5)">Mastery Quiz</div>
+    <div class="nav-tab" onclick="go(6)">Reflection</div>
   </div>
 </nav>
-<div class="progress-bar"><div class="progress-fill" id="progress" style="width:25%"></div></div>
+<div class="progress-bar"><div class="progress-fill" id="prog" style="width:14%"></div></div>
 
-<!-- SECTION 0: OVERVIEW / HOME -->
-<div class="section active" id="sec-0">
+<!-- ══════════════════════════════════════
+     PAGE 0 — OVERVIEW
+══════════════════════════════════════ -->
+<div class="page active" id="p0">
   <div class="hero">
-    <div class="hero-tag">11th Grade · Self-Paced</div>
-    <h1>Parts of Speech<br><span>& the SAT</span></h1>
-    <p class="hero-sub">Build the grammar foundation you need to succeed on SAT Writing and Language questions.</p>
-    <button class="btn btn-gold" onclick="showSection(1)">Start Module →</button>
+    <div class="badge">11th Grade · Self-Paced · SAT Prep</div>
+    <h1>Parts of Speech<br><em>& the SAT</em></h1>
+    <p>Build the grammar foundation you need to independently identify and correct errors on SAT Writing and Language questions.</p>
+    <button class="btn btn-gold" onclick="go(1)">Start Module →</button>
   </div>
 
   <div class="card-grid">
-    <div class="card">
-      <div class="card-icon">📖</div>
-      <h3>Why Parts of Speech?</h3>
-      <p>SAT Writing and Language questions test whether you can identify and correct grammar errors in context. Knowing your parts of speech is the first step.</p>
-    </div>
-    <div class="card">
-      <div class="card-icon">⚡</div>
-      <h3>Immediate Feedback</h3>
-      <p>Every practice question gives you instant corrective feedback so you understand <em>why</em> an answer is right or wrong — not just what the answer is.</p>
-    </div>
-    <div class="card">
-      <div class="card-icon">🎯</div>
-      <h3>Self-Paced</h3>
-      <p>Move through each lesson at your own speed. Review any section as many times as you need before moving on to practice questions.</p>
-    </div>
-    <div class="card">
-      <div class="card-icon">📊</div>
-      <h3>Track Your Progress</h3>
-      <p>Complete the pre- and post-assessments so you can see exactly how much your skills have grown over the course of this module.</p>
-    </div>
+    <div class="card"><div class="card-icon">📋</div><h3>Pre-Assessment First</h3><p>Start with a 20-question pre-assessment so you know your baseline. You won't be graded — it just shows your starting point.</p></div>
+    <div class="card"><div class="card-icon">📖</div><h3>4 Grouped Lessons</h3><p>Learn each part of speech with direct instruction, modeled examples, and guided practice before you work independently.</p></div>
+    <div class="card"><div class="card-icon">⚡</div><h3>Immediate Feedback</h3><p>Every practice question gives you feedback right away — not just the right answer, but <em>why</em> the word functions that way in context.</p></div>
+    <div class="card"><div class="card-icon">🏆</div><h3>Mastery at 85%</h3><p>The final quiz mirrors SAT format. Score 85/100 (17/20) to show mastery. Then complete a short reflection survey.</p></div>
   </div>
 
-  <div style="text-align:center; padding-bottom: 3rem;">
-    <button class="btn btn-primary" onclick="showSection(1)">Begin: Purpose of this Module →</button>
+  <div class="module-list">
+    <h2>Module Roadmap</h2>
+    <div class="mitem" onclick="go(2)"><div class="mnum">0</div><div><div class="mt">Pre-Assessment</div><div class="md">20 SAT-format questions — ungraded baseline</div></div><div class="mtag">Start here</div></div>
+    <div class="mitem" onclick="go(1)"><div class="mnum">i</div><div><div class="mt">Purpose & Research Background</div><div class="md">Why this module was built and what the research says</div></div><div class="mtag">5 min</div></div>
+    <div class="mitem" onclick="showLesson(0);go(3)"><div class="mnum">1</div><div><div class="mt">Nouns & Pronouns</div><div class="md">Naming words and the words that replace them</div></div><div class="mtag">Lesson 1</div></div>
+    <div class="mitem" onclick="showLesson(1);go(3)"><div class="mnum">2</div><div><div class="mt">Verbs & Verb Tense</div><div class="md">Action, linking, tense consistency, subject-verb agreement</div></div><div class="mtag">Lesson 2</div></div>
+    <div class="mitem" onclick="showLesson(2);go(3)"><div class="mnum">3</div><div><div class="mt">Adjectives, Adverbs & Modifiers</div><div class="md">The #1 SAT error type — and misplaced modifiers</div></div><div class="mtag">Lesson 3</div></div>
+    <div class="mitem" onclick="showLesson(3);go(3)"><div class="mnum">4</div><div><div class="mt">Prepositions & Conjunctions</div><div class="md">Relationships, connections, and comma rules</div></div><div class="mtag">Lesson 4</div></div>
+    <div class="mitem" onclick="go(4)"><div class="mnum">✎</div><div><div class="mt">Passage-Based Practice</div><div class="md">SAT-style questions with immediate corrective feedback</div></div><div class="mtag">Practice</div></div>
+    <div class="mitem" onclick="go(5)"><div class="mnum">★</div><div><div class="mt">Mastery Assessment</div><div class="md">20 questions · 85% required · mirrors your pre-assessment</div></div><div class="mtag">Final quiz</div></div>
+    <div class="mitem" onclick="go(6)"><div class="mnum">✦</div><div><div class="mt">Post-Module Reflection</div><div class="md">5 open-response questions about your experience</div></div><div class="mtag">Survey</div></div>
   </div>
+  <div style="text-align:center;padding-bottom:3rem;"><button class="btn btn-primary" onclick="go(2)">Begin: Take Pre-Assessment →</button></div>
 </div>
 
-<!-- SECTION 1: PURPOSE OF STUDY -->
-<div class="section" id="sec-1">
-  <div class="content-wrap">
-    <div class="section-header">
-      <div class="section-tag">Chapter 1 — Background</div>
+<!-- ══════════════════════════════════════
+     PAGE 1 — PURPOSE
+══════════════════════════════════════ -->
+<div class="page" id="p1">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-label">Research Background</div>
       <h2>Purpose of This Module</h2>
-      <p>Understanding why this module exists will help you connect the learning to what really matters: your success on the SAT.</p>
+      <p>Understanding why this module exists helps you connect the learning to what really matters.</p>
     </div>
 
-    <div class="purpose-box">
+    <div class="pbox">
       <h3>The Instructional Problem</h3>
-      <p>Many 11th grade students can recognize parts of speech in a simple sentence — but struggle to apply that knowledge when grammar questions appear inside a longer reading passage, which is exactly how the SAT presents them.</p>
-      <p style="margin-top: 1rem;">There is a gap between <strong style="color:var(--gold)">surface-level grammar awareness</strong> and the ability to <strong style="color:var(--gold)">independently identify errors in context</strong>. This module is designed to close that gap.</p>
+      <p>Many 11th grade students can recognize parts of speech in a simple sentence — but struggle when grammar questions appear inside a longer reading passage, which is exactly how the SAT presents them.</p>
+      <p>The gap is one of <strong style="color:var(--gold)">depth and application</strong>. Students have surface-level awareness but cannot reliably apply rules independently. This module is designed to close that gap.</p>
     </div>
 
-    <div class="lesson-block">
-      <h3>Research Questions This Module Explores</h3>
-      <p>This module was built as part of a research study. The study asks two questions:</p>
-      <ul class="rq-list">
-        <li>To what extent do 11th grade students demonstrate improved ability to independently identify grammar errors in passage-based contexts after completing a self-paced learning module?</li>
+    <div class="lb">
+      <h3>Research Questions This Study Examines</h3>
+      <p>This module is part of a research study. Two questions guide the design:</p>
+      <ul class="rqs">
+        <li>To what extent do 11th grade students at Best High School demonstrate improved ability to independently identify grammar errors in passage-based contexts after completing a self-paced learning module?</li>
         <li>How do 11th grade students describe their experience with immediate corrective feedback while completing SAT grammar practice activities within the module?</li>
       </ul>
     </div>
 
-    <div class="lesson-block">
-      <h3>What the Research Says</h3>
-      <p>Studies on feedback in learning consistently show that <strong>immediate corrective feedback</strong> — feedback given right at the point of practice — supports skill building more effectively than delayed feedback (Hattie & Timperley, 2007; Shute, 2008).</p>
-      <p>This module puts that research into practice. Every question you answer gives you feedback right away, including an explanation of why the answer is correct.</p>
+    <div class="lb">
+      <h3>What the Research Says About Feedback</h3>
+      <p>Studies consistently show that <strong>immediate corrective feedback</strong> — given right at the point of practice — supports skill building more than delayed feedback (Hattie & Timperley, 2007; Shute, 2008). Feedback that <em>explains why</em> an answer is correct or incorrect produces stronger learning gains than simple right/wrong feedback (Wisniewski et al., 2020).</p>
+      <p>Every question in this module gives you feedback right away, with an explanation of how the word functions in context — not just a checkmark.</p>
     </div>
 
-    <div class="lesson-block">
-      <h3>What You Will Learn</h3>
+    <div class="lb">
+      <h3>Learning Objectives</h3>
       <p>By the end of this module, you will be able to:</p>
-      <ul style="margin-top:0.8rem; padding-left: 1.2rem; color: var(--slate); line-height: 2;">
-        <li>Name and define all eight parts of speech</li>
-        <li>Identify parts of speech within SAT-style passage excerpts</li>
-        <li>Explain how a word's function — not just its form — determines its part of speech</li>
-        <li>Apply parts of speech knowledge to recognize and correct grammar errors</li>
+      <ul style="margin-top:.7rem;">
+        <li>Identify all eight parts of speech within sentences</li>
+        <li>Explain the <em>function</em> of a word in context, not just label it</li>
+        <li>Apply parts of speech knowledge to identify and correct SAT-style grammar errors</li>
+        <li>Demonstrate mastery on a summative assessment with items that mirror the SAT format</li>
       </ul>
     </div>
 
     <div class="btn-row">
-      <button class="btn btn-outline" onclick="showSection(0)">← Back</button>
-      <button class="btn btn-primary" onclick="showSection(2)">Next: The 8 Parts of Speech →</button>
+      <button class="btn btn-outline" onclick="go(0)">← Overview</button>
+      <button class="btn btn-primary" onclick="go(2)">Take Pre-Assessment →</button>
     </div>
   </div>
 </div>
 
-<!-- SECTION 2: LESSON -->
-<div class="section" id="sec-2">
-  <div class="content-wrap">
-    <div class="section-header">
-      <div class="section-tag">Chapter 2 — Lesson</div>
+<!-- ══════════════════════════════════════
+     PAGE 2 — PRE-ASSESSMENT (20 Qs, no feedback)
+══════════════════════════════════════ -->
+<div class="page" id="p2">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-label">Pre-Assessment</div>
+      <h2>Baseline Quiz</h2>
+      <p>20 questions mirroring the actual SAT format. <strong>You will not be graded</strong> on this assessment — it simply shows your starting point before the lessons.</p>
+    </div>
+
+    <div id="preQuizContainer"></div>
+
+    <div class="btn-row">
+      <button class="btn btn-outline" onclick="go(1)">← Purpose</button>
+      <button class="btn btn-gold" onclick="submitPre()">Submit Pre-Assessment</button>
+    </div>
+    <div class="score-banner" id="preBanner">
+      <div><div class="score-big" id="preScore">—</div><div class="score-lbl">Pre-Assessment Score (ungraded)</div></div>
+      <div class="score-msg" id="preMsg"></div>
+      <button class="btn btn-gold" onclick="go(3)" style="margin-left:auto;">Begin Lessons →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     PAGE 3 — LESSONS
+══════════════════════════════════════ -->
+<div class="page" id="p3">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-label">Lessons 1–4</div>
       <h2>The 8 Parts of Speech</h2>
-      <p>Learn what each part of speech does in a sentence. Focus on <em>function</em> — how a word is being used — not just memorizing labels.</p>
+      <p>Select a lesson. Focus on how each part of speech <em>functions</em> — that's how the SAT tests them.</p>
+    </div>
+    <div class="ltabs">
+      <div class="ltab active" onclick="showLesson(0)">1 · Nouns &amp; Pronouns</div>
+      <div class="ltab" onclick="showLesson(1)">2 · Verbs &amp; Tense</div>
+      <div class="ltab" onclick="showLesson(2)">3 · Adjectives, Adverbs &amp; Modifiers</div>
+      <div class="ltab" onclick="showLesson(3)">4 · Prepositions &amp; Conjunctions</div>
     </div>
 
-    <div class="lesson-block">
-      <h3>Why Function Matters More Than Form</h3>
-      <p>The same word can be a different part of speech depending on how it's used. Take the word <em>run</em>:</p>
-      <ul style="margin: 0.8rem 0 0 1.2rem; color: var(--slate); line-height: 2.2;">
-        <li><strong>"I <em>run</em> every morning."</strong> → <em>run</em> is a <strong>verb</strong> (action)</li>
-        <li><strong>"I went for a <em>run</em>."</strong> → <em>run</em> is a <strong>noun</strong> (thing/activity)</li>
-      </ul>
-      <p style="margin-top: 0.8rem;">This is exactly the type of knowledge the SAT tests. You have to look at how the word works in context.</p>
-    </div>
-
-    <div class="lesson-block">
-      <h3>All 8 Parts of Speech</h3>
-      <p>Here are the eight parts of speech, their definitions, and examples.</p>
-      <div class="pos-grid">
-        <div class="pos-tag" style="border-color: #3a6bc8;">
-          <div class="name">Noun</div>
-          <div class="def">Names a person, place, thing, or idea</div>
-          <div class="ex">teacher, Chicago, freedom</div>
+    <!-- LESSON 1 -->
+    <div class="lpane active" id="l0">
+      <div class="lb"><h3>What Is a Noun?</h3>
+        <p>A noun names a <strong>person, place, thing, or idea</strong>. Nouns can be concrete (things you can touch) or abstract (ideas you can't).</p>
+        <div class="ex">The <em>committee</em> reviewed the <em>evidence</em> with <em>care</em>.</div>
+        <p><em>Committee</em> = group of people · <em>evidence</em> = thing · <em>care</em> = abstract idea</p>
+        <div class="tip"><strong>SAT Watch:</strong> The SAT sometimes tests whether you're using a noun when you need a verb or adverb. Ask: is this word <em>naming</em> something, or is it <em>doing/describing</em> something?</div>
+      </div>
+      <div class="lb"><h3>What Is a Pronoun?</h3>
+        <p>A pronoun <strong>replaces a noun</strong> so we don't repeat it. The noun it replaces is called the <strong>antecedent</strong>. Pronouns must match their antecedent in number and case.</p>
+        <div class="pos-grid">
+          <div class="pos-tag" style="border-color:var(--blue)"><div class="pn">Subject Pronouns</div><div class="pd">Used as the subject</div><div class="pe">I, he, she, we, they, who</div></div>
+          <div class="pos-tag" style="border-color:var(--gold)"><div class="pn">Object Pronouns</div><div class="pd">After verbs or prepositions</div><div class="pe">me, him, her, us, them, whom</div></div>
+          <div class="pos-tag" style="border-color:var(--green)"><div class="pn">Possessive</div><div class="pd">Show ownership</div><div class="pe">my, his, her, our, their, its</div></div>
+          <div class="pos-tag" style="border-color:var(--red)"><div class="pn">Indefinite</div><div class="pd">Non-specific people/things</div><div class="pe">everyone, each, neither, one</div></div>
         </div>
-        <div class="pos-tag" style="border-color: #2d6a4f;">
-          <div class="name">Pronoun</div>
-          <div class="def">Replaces a noun</div>
-          <div class="ex">he, she, they, who, its</div>
-        </div>
-        <div class="pos-tag" style="border-color: #c8973a;">
-          <div class="name">Verb</div>
-          <div class="def">Shows action or state of being</div>
-          <div class="ex">run, is, became, wrote</div>
-        </div>
-        <div class="pos-tag" style="border-color: #9b2335;">
-          <div class="name">Adjective</div>
-          <div class="def">Describes or modifies a noun</div>
-          <div class="ex">bright, small, three, her</div>
-        </div>
-        <div class="pos-tag" style="border-color: #7b4f9e;">
-          <div class="name">Adverb</div>
-          <div class="def">Modifies a verb, adjective, or adverb</div>
-          <div class="ex">quickly, very, never, there</div>
-        </div>
-        <div class="pos-tag" style="border-color: #2a8a8a;">
-          <div class="name">Preposition</div>
-          <div class="def">Shows relationship between words</div>
-          <div class="ex">in, on, between, despite</div>
-        </div>
-        <div class="pos-tag" style="border-color: #c87a3a;">
-          <div class="name">Conjunction</div>
-          <div class="def">Connects words, phrases, or clauses</div>
-          <div class="ex">and, but, although, because</div>
-        </div>
-        <div class="pos-tag" style="border-color: #1a7a3a;">
-          <div class="name">Interjection</div>
-          <div class="def">Expresses emotion, often standalone</div>
-          <div class="ex">Oh! Wow. Hey, wait —</div>
-        </div>
+        <div class="tip"><strong>SAT Watch (connects to Q1–5):</strong> "Each of the researchers _____ required" — the subject is <em>each</em>, which is always singular. Use <em>is</em>, not <em>are</em>. Strip away the prepositional phrase to find the real subject.</div>
       </div>
     </div>
 
-    <div class="lesson-block">
-      <h3>SAT-Style Context: What to Watch For</h3>
-      <p>The SAT Writing and Language section will give you a passage and ask you to identify errors or improve word choice. Parts of speech knowledge helps you answer questions like:</p>
-      <ul style="margin: 0.8rem 0 0 1.2rem; color: var(--slate); line-height: 2.2;">
-        <li>Should this be an adjective or an adverb? (<em>"The runner moved <u>quick</u> / <u>quickly</u>."</em>)</li>
-        <li>Is this pronoun the right case? (<em>"The award went to <u>she</u> / <u>her</u>."</em>)</li>
-        <li>Does this verb agree with its subject?</li>
-        <li>Is a modifier placed near the word it's supposed to describe?</li>
-      </ul>
+    <!-- LESSON 2 -->
+    <div class="lpane" id="l1">
+      <div class="lb"><h3>Verb Types</h3>
+        <div class="pos-grid">
+          <div class="pos-tag" style="border-color:var(--gold)"><div class="pn">Action Verb</div><div class="pd">Physical or mental action</div><div class="pe">run, think, conducted, studied</div></div>
+          <div class="pos-tag" style="border-color:var(--blue)"><div class="pn">Linking Verb</div><div class="pd">Connects subject to description</div><div class="pe">is, are, seems, felt, went, became</div></div>
+          <div class="pos-tag" style="border-color:var(--green)"><div class="pn">Helping Verb</div><div class="pd">Assists main verb, shows tense</div><div class="pe">have, has, had, will, should, can</div></div>
+        </div>
+      </div>
+      <div class="lb"><h3>Verb Tense — The SAT Tests These Specifically</h3>
+        <p>Four tenses come up in your pre/post assessments. Know the difference:</p>
+        <div class="ex"><strong>Simple past:</strong> They <em>studied</em> the effects last year. (one completed action)</div>
+        <div class="ex"><strong>Present perfect:</strong> Since 2015, researchers <em>have studied</em> the effects. (ongoing from past to now — use with "since")</div>
+        <div class="ex"><strong>Past perfect:</strong> By the time we arrived, they <em>had left</em> already. (action completed before another past action — use with "by the time")</div>
+        <div class="ex"><strong>Irregular past participle:</strong> The team has <em>begun</em> research. (not "began" — "has" requires the past participle)</div>
+        <div class="tip"><strong>Signal words matter:</strong> "Since" → present perfect (have/has + verb). "By the time" → past perfect (had + verb). "Has/Have" → needs past participle (begun, not began).</div>
+      </div>
+      <div class="lb"><h3>Subject-Verb Agreement</h3>
+        <p>The verb must agree with its subject in number — not with the nearest noun.</p>
+        <div class="ex">❌ The collection of artifacts <em>are</em> on display. → ✓ The collection <em>is</em> on display.</div>
+        <div class="ex">❌ Each of the researchers <em>are</em> required... → ✓ Each of the researchers <em>is</em> required...</div>
+        <div class="tip"><strong>Strategy:</strong> Cross out the prepositional phrase. "The collection [of artifacts from various civilizations]" → subject = <em>collection</em> → singular → <em>is</em>.</div>
+      </div>
+    </div>
+
+    <!-- LESSON 3 -->
+    <div class="lpane" id="l2">
+      <div class="lb"><h3>Adjectives vs. Adverbs — Most-Tested Modifier Error</h3>
+        <p><strong>Adjective:</strong> describes a <em>noun</em> or pronoun. <strong>Adverb:</strong> describes a <em>verb, adjective, or another adverb</em>.</p>
+        <div class="ex">The scientists conducted experiments <em>carefully</em>. → "carefully" modifies the verb "conducted" → adverb ✓</div>
+        <div class="ex">After reviewing applications, the committee felt <em>confident</em>. → "felt" is a linking verb → use adjective ✓</div>
+        <div class="ex">The presentation went <em>well</em>. → "went" is a linking verb here → "well" = adjective describing result ✓</div>
+        <div class="ex">She felt <em>bad</em> about missing the meeting. → "felt" = linking verb → adjective "bad," not adverb "badly" ✓</div>
+        <div class="tip"><strong>Linking verb rule:</strong> After linking verbs (feel, seem, look, smell, taste, go, become), use an <strong>adjective</strong>, not an adverb. "The soup smells <em>good</em>" ✓ (not "goodly").</div>
+      </div>
+      <div class="lb"><h3>Misplaced Modifiers</h3>
+        <p>An opening descriptive phrase must refer to the <strong>subject directly after the comma</strong>. If it doesn't, it's a dangling modifier.</p>
+        <div class="ex">❌ Having completed research, <em>the paper was submitted</em>. (The paper didn't complete the research.)</div>
+        <div class="ex">✓ Having completed research, <em>the researchers submitted the paper</em>. ✓</div>
+        <div class="tip"><strong>SAT strategy:</strong> When a sentence opens with a verb-phrase (Having _____, Running _____, After ______), the subject right after the comma must be the person/thing doing that action.</div>
+      </div>
+    </div>
+
+    <!-- LESSON 4 -->
+    <div class="lpane" id="l3">
+      <div class="lb"><h3>Prepositions</h3>
+        <p>A preposition shows the <strong>relationship</strong> between a noun/pronoun and another word — often location, time, or direction. It always leads a prepositional phrase.</p>
+        <div class="ex">The collection <em>of artifacts from various civilizations</em> is on display.</div>
+        <p>"Of artifacts from various civilizations" is a prepositional phrase — strip it away to find the true subject of the sentence.</p>
+        <div class="tip"><strong>Common prepositions:</strong> of, in, on, by, for, with, from, about, between, through, during, despite, among, since, until.</div>
+      </div>
+      <div class="lb"><h3>Conjunctions — SAT Tests These Constantly</h3>
+        <div class="pos-grid">
+          <div class="pos-tag" style="border-color:var(--gold)"><div class="pn">Coordinating (FANBOYS)</div><div class="pd">Join equal parts</div><div class="pe">for, and, nor, but, or, yet, so</div></div>
+          <div class="pos-tag" style="border-color:var(--blue)"><div class="pn">Subordinating</div><div class="pd">Join dependent to main clause</div><div class="pe">because, although, since, when, if</div></div>
+          <div class="pos-tag" style="border-color:var(--green)"><div class="pn">Conjunctive Adverbs</div><div class="pd">Need semicolon before them</div><div class="pe">however, therefore, moreover</div></div>
+        </div>
+        <div class="ex" style="margin-top:.9rem">The study was expensive, <em>but</em> it provided valuable data. → "but" shows contrast ✓</div>
+        <div class="ex">The data was incomplete, <em>but</em> scientists continued collecting. → shows contrast despite obstacle ✓</div>
+        <div class="ex"><em>Although</em> the sample was small, it was statistically significant. → concession ✓</div>
+        <div class="ex">The experiment failed; <em>however</em>, researchers learned valuable lessons. → semicolon before "however" ✓</div>
+        <div class="tip"><strong>Punctuation rule:</strong> "The study succeeded<em>, and</em> it was published." ✓ — comma before a coordinating conjunction joining two independent clauses. No comma needed after "and."</div>
+      </div>
     </div>
 
     <div class="btn-row">
-      <button class="btn btn-outline" onclick="showSection(1)">← Back</button>
-      <button class="btn btn-primary" onclick="showSection(3)">Next: Practice Questions →</button>
+      <button class="btn btn-outline" onclick="go(2)">← Pre-Assessment</button>
+      <button class="btn btn-primary" onclick="go(4)">Practice →</button>
     </div>
   </div>
 </div>
 
-<!-- SECTION 3: PRACTICE QUIZ -->
-<div class="section" id="sec-3">
-  <div class="content-wrap">
-    <div class="section-header">
-      <div class="section-tag">Chapter 3 — Practice</div>
+<!-- ══════════════════════════════════════
+     PAGE 4 — PRACTICE (feedback on)
+══════════════════════════════════════ -->
+<div class="page" id="p4">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-label">Guided Practice</div>
       <h2>SAT-Style Practice</h2>
-      <p>Select your answer for each question. You'll get immediate feedback explaining why each answer is correct or incorrect.</p>
+      <p>These questions mirror the types on your pre/post assessments. Submit to see immediate corrective feedback on each answer.</p>
+    </div>
+    <div id="practiceContainer"></div>
+    <div class="btn-row">
+      <button class="btn btn-outline" onclick="go(3)">← Lessons</button>
+      <button class="btn btn-gold" onclick="submitPractice()">Submit &amp; See Feedback</button>
+    </div>
+    <div class="score-banner" id="pracBanner">
+      <div><div class="score-big" id="pracScore">—</div><div class="score-lbl">Practice Score</div></div>
+      <div class="score-msg" id="pracMsg"></div>
+      <button class="btn btn-gold" onclick="go(5)" style="margin-left:auto;">Take Mastery Quiz →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     PAGE 5 — MASTERY ASSESSMENT (20 Qs, same as pre)
+══════════════════════════════════════ -->
+<div class="page" id="p5">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-label">Mastery Assessment</div>
+      <h2>Final Quiz</h2>
+      <p>20 questions mirroring the actual SAT format. You need <strong>85% (17/20 correct)</strong> for mastery. Read each full sentence carefully. Good luck!</p>
+    </div>
+    <div id="masteryContainer"></div>
+    <div class="btn-row">
+      <button class="btn btn-outline" onclick="go(4)">← Practice</button>
+      <button class="btn btn-gold" onclick="submitMastery()">Submit Mastery Quiz</button>
+    </div>
+    <div class="score-banner" id="mastBanner">
+      <div><div class="score-big" id="mastScore">—</div><div class="score-lbl">Mastery Score (85% = 17/20)</div></div>
+      <div class="score-msg" id="mastMsg"></div>
+      <button class="btn btn-gold" onclick="go(6)" style="margin-left:auto;">Complete Reflection →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     PAGE 6 — REFLECTION SURVEY
+══════════════════════════════════════ -->
+<div class="page" id="p6">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-label">Post-Module Reflection</div>
+      <h2>After-Module Survey</h2>
+      <p>Respond to each question thoughtfully. Your answers help improve this module for future students.</p>
     </div>
 
-    <!-- Q1 -->
-    <div class="quiz-q" id="q1">
-      <div class="q-num">Question 1</div>
-      <div class="q-text">Read the passage. What part of speech is the underlined word?</div>
-      <div class="passage">The scientist <u>carefully</u> examined each sample before drawing any conclusions.</div>
-      <ul class="quiz-options" id="opts1">
-        <li><label><input type="radio" name="q1" value="A"> A. Noun</label></li>
-        <li><label><input type="radio" name="q1" value="B"> B. Adjective</label></li>
-        <li><label><input type="radio" name="q1" value="C"> C. Adverb</label></li>
-        <li><label><input type="radio" name="q1" value="D"> D. Verb</label></li>
-      </ul>
-      <div class="feedback-box" id="fb1"></div>
+    <div class="reflect-q">
+      <label>1. How did the feedback after each question help you find the correct response?</label>
+      <textarea id="r1" placeholder="Write your response here..."></textarea>
     </div>
-
-    <!-- Q2 -->
-    <div class="quiz-q" id="q2">
-      <div class="q-num">Question 2</div>
-      <div class="q-text">Which word in the sentence below is a <strong>conjunction</strong>?</div>
-      <div class="passage">Maria studied hard, <u>but</u> she still felt nervous before the exam.</div>
-      <ul class="quiz-options" id="opts2">
-        <li><label><input type="radio" name="q2" value="A"> A. studied</label></li>
-        <li><label><input type="radio" name="q2" value="B"> B. but</label></li>
-        <li><label><input type="radio" name="q2" value="C"> C. nervous</label></li>
-        <li><label><input type="radio" name="q2" value="D"> D. before</label></li>
-      </ul>
-      <div class="feedback-box" id="fb2"></div>
+    <div class="reflect-q">
+      <label>2. How did the activities and practice within the module help your confidence with these parts of speech?</label>
+      <textarea id="r2" placeholder="Write your response here..."></textarea>
     </div>
-
-    <!-- Q3 -->
-    <div class="quiz-q" id="q3">
-      <div class="q-num">Question 3</div>
-      <div class="q-text">The SAT asks you to choose the best word. Which option correctly fills the blank?</div>
-      <div class="passage">The committee made its decision _______, waiting until all evidence had been reviewed.</div>
-      <ul class="quiz-options" id="opts3">
-        <li><label><input type="radio" name="q3" value="A"> A. cautious</label></li>
-        <li><label><input type="radio" name="q3" value="B"> B. caution</label></li>
-        <li><label><input type="radio" name="q3" value="C"> C. cautiously</label></li>
-        <li><label><input type="radio" name="q3" value="D"> D. to caution</label></li>
-      </ul>
-      <div class="feedback-box" id="fb3"></div>
+    <div class="reflect-q">
+      <label>3. How did you find the pacing of the module?</label>
+      <textarea id="r3" placeholder="Write your response here..."></textarea>
     </div>
-
-    <!-- Q4 -->
-    <div class="quiz-q" id="q4">
-      <div class="q-num">Question 4</div>
-      <div class="q-text">What part of speech is the word <em>between</em> in this sentence?</div>
-      <div class="passage">The rivalry <u>between</u> the two schools had lasted for decades.</div>
-      <ul class="quiz-options" id="opts4">
-        <li><label><input type="radio" name="q4" value="A"> A. Adverb</label></li>
-        <li><label><input type="radio" name="q4" value="B"> B. Conjunction</label></li>
-        <li><label><input type="radio" name="q4" value="C"> C. Preposition</label></li>
-        <li><label><input type="radio" name="q4" value="D"> D. Verb</label></li>
-      </ul>
-      <div class="feedback-box" id="fb4"></div>
+    <div class="reflect-q">
+      <label>4. How did working through the module at your own pace impact your understanding and retention of information on the parts of speech?</label>
+      <textarea id="r4" placeholder="Write your response here..."></textarea>
     </div>
-
-    <!-- Q5 -->
-    <div class="quiz-q" id="q5">
-      <div class="q-num">Question 5</div>
-      <div class="q-text">Which option corrects the grammar error in the underlined portion?</div>
-      <div class="passage">The award was given to <u>she and the other volunteers</u> at the end of the ceremony.</div>
-      <ul class="quiz-options" id="opts5">
-        <li><label><input type="radio" name="q5" value="A"> A. her and the other volunteers</label></li>
-        <li><label><input type="radio" name="q5" value="B"> B. she and them volunteers</label></li>
-        <li><label><input type="radio" name="q5" value="C"> C. her and them</label></li>
-        <li><label><input type="radio" name="q5" value="D"> D. No change needed</label></li>
-      </ul>
-      <div class="feedback-box" id="fb5"></div>
+    <div class="reflect-q">
+      <label>5. Was there any information or feedback in the module that you found confusing or made it harder to learn?</label>
+      <textarea id="r5" placeholder="Write your response here..."></textarea>
     </div>
 
     <div class="btn-row">
-      <button class="btn btn-outline" onclick="showSection(2)">← Back to Lesson</button>
-      <button class="btn btn-gold" onclick="checkAll()">Submit & See Feedback</button>
+      <button class="btn btn-outline" onclick="go(5)">← Mastery Quiz</button>
+      <button class="btn btn-gold" onclick="submitReflection()">Submit Reflection</button>
     </div>
-
-    <div class="score-banner" id="scoreBanner">
-      <div>
-        <div class="score-num" id="scoreNum">0/5</div>
-        <div class="score-label">Practice Score</div>
-      </div>
-      <div style="color:rgba(255,255,255,0.75); font-size:0.9rem; max-width:320px; line-height:1.6;" id="scoreMsg"></div>
-    </div>
-
+    <div class="saved-banner" id="reflectDone">✓ Reflection submitted. You have completed the module! Great work.</div>
   </div>
 </div>
 
 <footer>
-  <p>SAT Grammar Module · 11th Grade · <span>Parts of Speech</span> · Built for Canvas LMS</p>
-  <p style="margin-top:0.4rem;">Based on capstone research: immediate corrective feedback in self-paced e-learning environments.</p>
+  <p>Parts of Speech – SAT Prep · 11th Grade · <span>Best High School</span></p>
+  <p style="margin-top:.3rem;">Module built for D301 capstone research · Hattie & Timperley (2007) · Shute (2008)</p>
 </footer>
 
 <script>
-  const sections = document.querySelectorAll('.section');
-  const navSteps = document.querySelectorAll('.nav-step');
-  const progressFill = document.getElementById('progress');
-  const progressPct = [25, 50, 75, 100];
+// ── NAVIGATION ─────────────────────────
+const pages = document.querySelectorAll('.page');
+const tabs  = document.querySelectorAll('.nav-tab');
+const pcts  = [14,28,42,57,71,85,100];
 
-  function showSection(idx) {
-    sections.forEach((s, i) => s.classList.toggle('active', i === idx));
-    navSteps.forEach((n, i) => {
-      n.classList.remove('active', 'completed');
-      if (i === idx) n.classList.add('active');
-      if (i < idx) n.classList.add('completed');
+function go(idx) {
+  pages.forEach((p,i) => p.classList.toggle('active', i===idx));
+  tabs.forEach((t,i)  => { t.classList.remove('active','done'); if(i===idx) t.classList.add('active'); if(i<idx) t.classList.add('done'); });
+  document.getElementById('prog').style.width = pcts[idx]+'%';
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+function showLesson(idx) {
+  document.querySelectorAll('.lpane').forEach((p,i) => p.classList.toggle('active', i===idx));
+  document.querySelectorAll('.ltab').forEach((t,i)  => t.classList.toggle('active', i===idx));
+}
+
+// ── QUESTION DATA ──────────────────────
+// All 20 questions from your actual pre/post assessments
+const allQuestions = [
+  // Q1-5: Subject-Verb Agreement & Prepositions
+  { cat:'Subject-Verb Agreement & Prepositions', stem:'The collection of artifacts from various civilizations _____ on display.',
+    opts:['are','is','were','have been'], correct:1,
+    explain:'The subject is "collection" (singular). The prepositional phrase "of artifacts from various civilizations" is extra detail — strip it away. Singular subject → singular verb: "is."' },
+  { cat:'Subject-Verb Agreement & Prepositions', stem:'Each of the researchers _____ required to submit a report.',
+    opts:['are','were','is','have been'], correct:2,
+    explain:'"Each" is always singular, even when followed by a plural noun. Strip away "of the researchers" → "Each is required." Always use a singular verb with each, everyone, anyone, neither.' },
+  { cat:'Subject-Verb Agreement & Prepositions', stem:'The impact of recent changes _____ significant.',
+    opts:['are','were','is','have been'], correct:2,
+    explain:'The subject is "impact" (singular), not "changes." Strip the prepositional phrase: "The impact _____ significant." Singular subject → "is."' },
+  { cat:'Subject-Verb Agreement & Prepositions', stem:'The effects of climate change _____ becoming more visible.',
+    opts:['is','are','was','has been'], correct:1,
+    explain:'Here the subject IS plural: "effects" (not "climate change"). "The effects _____ becoming more visible." Plural subject → plural verb: "are."' },
+  { cat:'Subject-Verb Agreement & Prepositions', stem:'One of the reasons for the success _____ teamwork.',
+    opts:['are','were','is','have been'], correct:2,
+    explain:'"One" is always singular. Strip away "of the reasons for the success." → "One _____ teamwork." Singular subject → "is."' },
+  // Q6-10: Verb Tense
+  { cat:'Verb Tense', stem:'Since 2015, researchers _____ the effects.',
+    opts:['studied','have studied','had studied','study'], correct:1,
+    explain:'"Since" signals an action that started in the past and continues to the present — use present perfect: "have studied." Simple past ("studied") would suggest the research has ended.' },
+  { cat:'Verb Tense', stem:'By the time we arrived, they _____ already.',
+    opts:['left','have left','had left','leave'], correct:2,
+    explain:'"By the time we arrived" signals that one past action was completed before another. Use past perfect: "had left." Past perfect (had + past participle) shows the earlier of two past events.' },
+  { cat:'Verb Tense', stem:'The study, conducted in 2020, _____ important insights.',
+    opts:['provides','provided','has provided','will provide'], correct:1,
+    explain:'The study was completed in 2020 — a finished past action. Use simple past: "provided." "Provides" (present) would be inconsistent with the past-tense context of "conducted in 2020."' },
+  { cat:'Verb Tense', stem:'Over the past decade, technology _____ communication.',
+    opts:['transformed','has transformed','had transformed','transforms'], correct:1,
+    explain:'"Over the past decade" describes a period from the past to now — use present perfect: "has transformed." This tense connects a past starting point to the present moment.' },
+  { cat:'Verb Tense', stem:'The team has _____ extensive research.',
+    opts:['began','begun','begin','begins'], correct:1,
+    explain:'After "has," you need the past participle. The past participle of "begin" is "begun," not "began." "Began" is simple past and cannot follow a helping verb: "has begun" ✓, "has began" ✗.' },
+  // Q11-15: Modifiers
+  { cat:'Modifiers', stem:'The scientists conducted experiments _____.',
+    opts:['careful','carefully','with care','in careful ways'], correct:1,
+    explain:'"Carefully" is the adverb — it modifies the verb "conducted" (how did they conduct experiments?). "Careful" is an adjective and would need to describe a noun, not a verb.' },
+  { cat:'Modifiers', stem:'After reviewing applications, the committee felt _____.',
+    opts:['confident','confidently','with confidence','confidential'], correct:0,
+    explain:'"Felt" is a linking verb here — it connects the subject to a description. After linking verbs, use an adjective: "confident." Using the adverb "confidently" would be incorrect.' },
+  { cat:'Modifiers', stem:'The presentation went _____.',
+    opts:['good','in a good way','as good','well'], correct:3,
+    explain:'"Went" functions as a linking verb here. "Well" can serve as an adjective meaning "in good health/manner" after linking verbs. "Good" is an adjective but "well" is the standard choice here — it\'s the conventional usage the SAT tests.' },
+  { cat:'Modifiers', stem:'She felt _____ about missing the meeting.',
+    opts:['bad','badly','in a bad way','with badness'], correct:0,
+    explain:'"Felt" is a linking verb. Use the adjective "bad" (not the adverb "badly"). "She felt bad" = she experienced the emotion of regret. "She felt badly" would mean her sense of touch was impaired.' },
+  { cat:'Modifiers — Best Revision', stem:'Having completed research, the paper was submitted. Best revision:',
+    opts:['NO CHANGE','the paper that was submitted','the researchers submitted the paper','to a journal the paper was submitted'], correct:2,
+    explain:'"Having completed research" is a participial phrase that must refer to the subject directly after the comma. The paper can\'t complete research — the researchers did. Fix: "Having completed research, the researchers submitted the paper."' },
+  // Q16-20: Conjunctions
+  { cat:'Conjunctions', stem:'The study was expensive, _____ it provided valuable data.',
+    opts:['and','but','so','or'], correct:1,
+    explain:'"But" shows contrast — the study was expensive, yet it still provided value. "And" would just add information. "So" implies the value was caused by the expense, which doesn\'t make sense.' },
+  { cat:'Conjunctions', stem:'The data was incomplete, _____ scientists continued collecting.',
+    opts:['and','but','so','or'], correct:1,
+    explain:'"But" shows contrast — despite incomplete data, scientists continued. This signals an obstacle being overcome. "So" would imply the continuation was caused by the incompleteness.' },
+  { cat:'Conjunctions', stem:'_____ the sample was small, it was statistically significant.',
+    opts:['Because','Although','Since','When'], correct:1,
+    explain:'"Although" introduces a concessive clause — it acknowledges a potential weakness (small sample) while affirming the strength (statistical significance). "Because" would incorrectly imply the small size caused the significance.' },
+  { cat:'Conjunctions', stem:'The experiment failed; _____ researchers learned valuable lessons.',
+    opts:['and','however','but','so'], correct:1,
+    explain:'A semicolon before "however" is correct punctuation — "however" is a conjunctive adverb, not a true conjunction. It needs a semicolon (not just a comma) before it when connecting two independent clauses.' },
+  { cat:'Conjunctions — Punctuation', stem:'Which sentence is punctuated correctly?',
+    opts:['The study succeeded, and it was published.','The study succeeded and, it was published.','The study succeeded and it was published.','The study succeeded, and, it was published.'], correct:0,
+    explain:'When a coordinating conjunction (like "and") joins two independent clauses, place a comma BEFORE the conjunction: "The study succeeded, and it was published." No comma goes after the conjunction.' }
+];
+
+// ── BUILD QUIZ HTML ─────────────────────
+function buildQuiz(containerID, prefix, questions, showFeedback) {
+  const el = document.getElementById(containerID);
+  el.innerHTML = questions.map((q, i) => `
+    <div class="qcard" id="${prefix}card${i}">
+      <div class="qnum">${q.cat}</div>
+      <div class="qtext">Question ${i+1}: ${q.stem}</div>
+      <ul class="opts" id="${prefix}opts${i}">
+        ${q.opts.map((o,j) => `<li><label><input type="radio" name="${prefix}q${i}" value="${j}"> ${o}</label></li>`).join('')}
+      </ul>
+      ${showFeedback ? `<div class="fb" id="${prefix}fb${i}"></div>` : ''}
+    </div>`).join('');
+}
+
+buildQuiz('preQuizContainer',   'pre',  allQuestions, false);
+buildQuiz('masteryContainer',   'mast', allQuestions, false);
+
+// Practice: 8 selected questions with feedback
+const practiceQs = [
+  { ...allQuestions[0],  pi:0 },
+  { ...allQuestions[1],  pi:1 },
+  { ...allQuestions[5],  pi:2 },
+  { ...allQuestions[6],  pi:3 },
+  { ...allQuestions[10], pi:4 },
+  { ...allQuestions[11], pi:5 },
+  { ...allQuestions[14], pi:6 },
+  { ...allQuestions[18], pi:7 },
+];
+buildQuiz('practiceContainer', 'prac', practiceQs, true);
+
+// ── SCORING ─────────────────────────────
+function scoreQuiz(prefix, questions) {
+  let correct = 0;
+  questions.forEach((q, i) => {
+    const sel = document.querySelector(`input[name="${prefix}q${i}"]:checked`);
+    if (!sel) return;
+    const val = parseInt(sel.value);
+    const isRight = val === q.correct;
+    if (isRight) correct++;
+    document.querySelectorAll(`#${prefix}opts${i} label`).forEach(label => {
+      const inp = label.querySelector('input');
+      if (parseInt(inp.value) === q.correct) label.classList.add('correct');
+      else if (parseInt(inp.value) === val && !isRight) label.classList.add('wrong');
+      inp.disabled = true;
     });
-    progressFill.style.width = progressPct[idx] + '%';
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-
-  const answers = {
-    q1: { correct: 'C', feedback: { C: '✓ Correct! "Carefully" modifies the verb "examined," telling us how the scientist examined the samples. Words that modify verbs are adverbs.', default: 'Not quite. Ask: what word does "carefully" describe? It describes the verb "examined" — how the scientist examined. That makes it an adverb, not an adjective (which describes nouns).' }},
-    q2: { correct: 'B', feedback: { B: '✓ Correct! "But" connects two independent clauses and shows contrast between them. Coordinating conjunctions like "but," "and," and "or" join words, phrases, or clauses.', default: 'Not quite. A conjunction joins parts of a sentence. "But" is connecting "Maria studied hard" to "she still felt nervous" — that\'s a coordinating conjunction showing contrast.' }},
-    q3: { correct: 'C', feedback: { C: '✓ Correct! The blank modifies the verb "made" — it describes how the decision was made. You need an adverb here. "Cautiously" is the adverb form of the word.', A: 'Close, but "cautious" is an adjective. It would modify a noun. You need a word that modifies the verb "made" — that requires an adverb ending in -ly.', B: '"Caution" is a noun. It doesn\'t work grammatically here. You need an adverb to modify the verb "made."', D: '"To caution" is an infinitive phrase acting as a verb. It doesn\'t fit the grammatical structure of this sentence.' }},
-    q4: { correct: 'C', feedback: { C: '✓ Correct! "Between" shows the relationship between "the rivalry" and "the two schools." Words that show relationships between nouns and other words are prepositions.', default: 'Not quite. Think about what "between" is doing — it\'s showing a relationship (the location/connection of the rivalry relative to the two schools). Words that show relationships between nouns and other parts of the sentence are prepositions.' }},
-    q5: { correct: 'A', feedback: { A: '✓ Correct! After the preposition "to," you need an object pronoun. "She" is a subject pronoun — it can\'t follow "to." "Her" is the correct object pronoun here.', default: '"She" is a subject pronoun — it\'s used when the pronoun is the subject of a verb (e.g., "She won"). But here, the pronoun follows the preposition "to," which means it needs to be an object pronoun. "Her" is the object form.' }}
-  };
-
-  function checkAll() {
-    let score = 0;
-    ['q1','q2','q3','q4','q5'].forEach(q => {
-      const sel = document.querySelector(`input[name="${q}"]:checked`);
-      const fb = document.getElementById('fb' + q.slice(1));
-      const labels = document.querySelectorAll(`#opts${q.slice(1)} label`);
-      const data = answers[q];
-      if (!sel) return;
-      const val = sel.value;
-      const isCorrect = val === data.correct;
-      if (isCorrect) score++;
-      labels.forEach(label => {
-        const inp = label.querySelector('input');
-        if (inp.value === data.correct) label.classList.add('correct');
-        else if (inp.value === val && !isCorrect) label.classList.add('incorrect');
-      });
-      const msg = data.feedback[val] || data.feedback.default;
-      fb.textContent = msg;
-      fb.className = 'feedback-box ' + (isCorrect ? 'correct' : 'incorrect');
+    if (document.getElementById(`${prefix}fb${i}`)) {
+      const fb = document.getElementById(`${prefix}fb${i}`);
+      fb.textContent = (isRight ? '✓ Correct! ' : '✗ Not quite. ') + q.explain;
+      fb.className = 'fb ' + (isRight ? 'correct' : 'wrong');
       fb.style.display = 'block';
-    });
-    const banner = document.getElementById('scoreBanner');
-    document.getElementById('scoreNum').textContent = score + '/5';
-    const msgs = ['Keep going — review the lesson and try again.', 'Good start! Review the feedback on each question.', 'Solid effort! You\'re building your skills.', 'Great work! You have a strong grasp of these concepts.', '★ Excellent! You nailed every question.'];
-    document.getElementById('scoreMsg').textContent = msgs[score];
-    banner.style.display = 'flex';
-    banner.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-  }
+    }
+  });
+  return correct;
+}
+
+function submitPre() {
+  const s = scoreQuiz('pre', allQuestions);
+  document.getElementById('preScore').textContent = s+'/20';
+  document.getElementById('preMsg').textContent = 'This is your starting point — no grade attached. Now work through the lessons and see how much you grow!';
+  const b = document.getElementById('preBanner');
+  b.style.display = 'flex';
+  b.scrollIntoView({behavior:'smooth', block:'nearest'});
+}
+
+function submitPractice() {
+  const s = scoreQuiz('prac', practiceQs);
+  document.getElementById('pracScore').textContent = s+'/8';
+  const msgs = ['Review the lessons and try again.','Good start — read the feedback carefully.','Getting there — revisit the lessons on any misses.','Strong work! Almost there.','Excellent! You\'re ready for the mastery quiz.'];
+  document.getElementById('pracMsg').textContent = msgs[Math.min(Math.floor(s/2), 4)];
+  const b = document.getElementById('pracBanner');
+  b.style.display = 'flex';
+  b.scrollIntoView({behavior:'smooth', block:'nearest'});
+}
+
+function submitMastery() {
+  const s = scoreQuiz('mast', allQuestions);
+  const pct = Math.round(s/20*100);
+  document.getElementById('mastScore').textContent = s+'/20 ('+pct+'%)';
+  const passed = s >= 17;
+  document.getElementById('mastMsg').textContent = passed
+    ? '★ You reached mastery (85%)! Complete the reflection survey to finish the module.'
+    : 'You scored below 85%. Review the lessons on the question types you missed and try again. You can retake the quiz.';
+  const b = document.getElementById('mastBanner');
+  b.style.display = 'flex';
+  b.scrollIntoView({behavior:'smooth', block:'nearest'});
+}
+
+function submitReflection() {
+  document.getElementById('reflectDone').style.display = 'block';
+  document.getElementById('reflectDone').scrollIntoView({behavior:'smooth', block:'nearest'});
+}
 </script>
 </body>
 </html>
